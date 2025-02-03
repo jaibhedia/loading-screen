@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Screen</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #1e252b;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .loader {
+            font-size: 3rem;
+            font-weight: bold;
+            opacity: 0;
+            position: absolute;
+            transition: opacity 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading-text" class="loader"></div>
+    
+    <script>
+        const languages = [
+            "लोड हो रहा है", // Hindi
+            "লোড হচ্ছে", // Bengali
+            "ಲೋಡಿಂಗ್", // Kannada
+            "लोडिंग", // Marathi
+            "లోడింగ్", // Telugu
+            "Loading..." // English
+        ];
+        
+        let index = 0;
+        const textElement = document.getElementById("loading-text");
+
+        function cycleText() {
+            textElement.style.opacity = 0;
+            setTimeout(() => {
+                textElement.textContent = languages[index];
+                textElement.style.opacity = 1;
+                index = (index + 1) % languages.length;
+            }, 1000); 
+        }
+
+        setInterval(cycleText, 2000); 
+        cycleText();
+    </script>
+</body>
+</html>
